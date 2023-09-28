@@ -2,6 +2,7 @@
     box-sizing: border-box;
     padding: 0px;
     margin: 0px;
+    font-family: system-ui;
 }
 body{
     min-height: 100svh;
@@ -47,11 +48,21 @@ body{
 .gif-container{
     --size: 512px;
     height: var(--size);
+    min-width: var(--size);
     width: fit-content;
     background-color: rgb(32, 32, 32);
     border-radius: 25px;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .gif{
     height: 100%;
+}
+.loading{
+    color: white;
+}
+.hidden{
+    display: none;
 }
