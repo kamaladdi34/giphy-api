@@ -27,13 +27,13 @@ const getGifImage = async(keyword)=>{
     toggleLoading(true);
     try{
         let response = await fetchGIF(keyword);
+        return response;
     }
     catch(error){
         throw error;
     } finally {
         toggleLoading(false);
     }
-    return response;
 }
 const setImageUrl =(url)=>{
     targetImage.src = url;
@@ -52,4 +52,15 @@ searchButton.addEventListener('click',(event)=>{
 searchInput.addEventListener('input',(event)=>{
     searchButton.disabled = (searchInput.value == '');
 })
-showRandomGIF('spongebob')
+showRandomGIF('spongebob');
+document.addEventListener("keydown", async (event) => {
+    if(event.target == searchInput && searchInput.value != '' && event.key == "Enter"){
+        try{
+            await showRandomGIF(getUserInput());
+        }
+        catch(error){
+            throw error;
+        }
+    }
+  });
+  
