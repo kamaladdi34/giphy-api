@@ -2,7 +2,7 @@ const searchButton = document.querySelector('.search-button');
 const searchInput = document.querySelector('.search-input');
 const targetImage = document.querySelector('.gif');
 const loadingIndicator = document.querySelector('.loading');
-const API_KEY = 'Ggvp9pfr7ZGxlLz6LdHZ5Ju5gr3K11g7';
+const API_KEY = 'Ggvp9pfr7ZGxlLz6LdHZ5Ju5gr3K11g7'; // LMAO he left the api key
 const getUserInput = ()=> searchInput.value;
 const toggleLoading = (isLoading)=>{
     if (isLoading) {
@@ -33,4 +33,4 @@ const showRandomGIF = async(keyword)=>{
 searchButton.addEventListener('click',(event)=>{
     showRandomGIF(getUserInput());
 })
-showRandomGIF('cat, kitten, meow, paw') // Fetch Initial GIF
+showRandomGIF('spongebob') // Fetch Initial GIF
