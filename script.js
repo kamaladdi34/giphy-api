@@ -13,31 +13,22 @@ const toggleLoading = (isLoading)=>{
         targetImage.classList.remove('hidden');
       }
 }
-const fetchGIF = (keyword)=>{
-    return fetch(`https://api.giphy.com/v1/gifs/translate?api_key=${API_KEY}&s=${keyword}', {mode: 'cors'}`)
-    .then((response)=>{
-        return response.json();
-    })
-    .then((response)=>{
-        return response.data.images.original.url
-    })
+const fetchGIF = async(keyword)=>{
+    let response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=${API_KEY}&s=${keyword}', {mode: 'cors'}`)
+    response = await response.json();
+    return response.data.images.original.url
 }
-const getGifImage = (keyword)=>{
+const getGifImage = async(keyword)=>{
     toggleLoading(true);
-    let promise = fetchGIF(keyword);
-    promise.then(response =>{
-        toggleLoading(false);
-        return response;
-    })
-    return promise;
+    let response = await fetchGIF(keyword);
+    toggleLoading(false);
+    return response;
 }
 const setImageUrl =(url)=>{
     targetImage.src = url;
 }
-const showRandomGIF = (keyword)=>{
-    getGifImage(keyword).then((response)=>{
-        setImageUrl(response);
-    })
+const showRandomGIF = async(keyword)=>{
+    setImageUrl(await getGifImage(keyword));
 }
 searchButton.addEventListener('click',(event)=>{
     showRandomGIF(getUserInput());
