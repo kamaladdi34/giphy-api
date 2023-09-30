@@ -34,8 +34,12 @@ const getGifImage = (keyword)=>{
 const setImageUrl =(url)=>{
     targetImage.src = url;
 }
-searchButton.addEventListener('click',(event)=>{
-    getGifImage(getUserInput()).then((response)=>{
+const showRandomGIF = (keyword)=>{
+    getGifImage(keyword).then((response)=>{
         setImageUrl(response);
     })
+}
+searchButton.addEventListener('click',(event)=>{
+    showRandomGIF(getUserInput());
 })
+showRandomGIF('cat, kitten, meow, paw') // Fetch Initial GIF
