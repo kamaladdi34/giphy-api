@@ -50,6 +50,12 @@ body{
     transition: 0.2s;
     cursor: pointer;
 }
+.search-button:disabled{
+    cursor: default;
+    opacity: 0.5;
+    background-color: white;
+    color: black;
+}
 .gif-container{
     width: min(100vw,512px);
     height: 512px;

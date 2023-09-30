@@ -2,8 +2,7 @@ const searchButton = document.querySelector('.search-button');
 const searchInput = document.querySelector('.search-input');
 const targetImage = document.querySelector('.gif');
 const loadingIndicator = document.querySelector('.loading');
-const API_KEY = 'Ggvp9pfr7ZGxlLz6LdHZ5Ju5gr3K11g7'; // LMAO he left the api key
-const getUserInput = ()=> searchInput.value;
+const API_KEY = 'Ggvp9pfr7ZGxlLz6LdHZ5Ju5gr3K11g7';
 const toggleLoading = (isLoading)=>{
     if (isLoading) {
         loadingIndicator.classList.remove('hidden');
@@ -13,6 +12,7 @@ const toggleLoading = (isLoading)=>{
         targetImage.classList.remove('hidden');
       }
 }
+const getUserInput = ()=> searchInput.value;
 const fetchGIF = async(keyword)=>{
     let response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=${API_KEY}&s=${keyword}`, {mode: 'cors'})
     response = await response.json();
@@ -33,4 +33,7 @@ const showRandomGIF = async(keyword)=>{
 searchButton.addEventListener('click',(event)=>{
     showRandomGIF(getUserInput());
 })
-showRandomGIF('spongebob') // Fetch Initial GIF
+searchInput.addEventListener('input',(event)=>{
+    searchButton.disabled = (searchInput.value == '');
+})
+showRandomGIF('spongebob')
